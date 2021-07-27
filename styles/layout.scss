@@ -1,9 +1,54 @@
 // See: https://sass-lang.com/
 
 body {
-  background-color: #EEE;
-
+  background-color: #eee;
   h1 {
     color: #244751;
   }
+}
+
+#home {
+  background-color: #eee;
+  padding-bottom: 30px;
+}
+
+#index {
+  color: #003333;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+#pollSubmit {
+  text-align: center;
+}
+
+#pageHeader {
+  background-color: #0e0349;
+  margin-top: 0px;
+  padding-top: 20px;
+
+  #logo {
+    margin-top: 0;
+    padding-left: 20px;
+    padding-bottom: 5px;
+    color: #e6ffff;
+    text-shadow: 1px 1px 2px #000000;
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+  }
+}
+
+#instructions {
+
+  h2 {
+    padding-top: 10px;
+    text-align: center;
+  }
+}
+
+#pollForm {
+  font-size: 16px;
 }

@@ -9,9 +9,62 @@
 
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
+      <!-- Bootstrap -->
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css" integrity="sha384-PmY9l28YgO4JwMKbTvgaS7XNZJ30MK9FAZjjzXtlqyZCqBY6X6bXIkM++IkyinN+" crossorigin="anonymous">
+
   </head>
 
   <body>
-    <h1>Hello World!</h1>
+    <div id="home">
+      <% include ./partials/_header %>
+      <div id="index" class="container-fluid">
+        <div class="row">
+          <div id="instructions" class="col-lg-6 col-lg-offset-3">
+          <h2>Create a New Poll</h2>
+        </div>
+        <div class="row">
+          <div class="col-lg-6 col-lg-offset-3">
+            <form id="pollForm" method="POST" action="/polls">
+              <div class="form-group">
+                <label for="newPollName">Poll Name: </label>
+                <input type="text" class="form-control" name="pollName" placeholder="Enter poll name" required>
+              </div>
+              <div class="form-group">
+                <label for="pollQuestion">Question: </label>
+                <input type="text" class="form-control" name="pollQuestion" placeholder="Question" required>
+              </div>
+              <div id="optionsList">
+                <div class="form-group">
+                  <label for="option1">Choice 1: </label>
+                  <input required type="text" class="form-control" name="choice1" placeholder="Choice 1">
+                </div>
+                <div class="form-group">
+                  <label for="comment">Description:</label>
+                  <textarea class="form-control" rows="2" placeholder="Description (optional)" name="description1"></textarea>
+                </div>
+                <div class="form-group">
+                  <label for="option2">Choice 2: </label>
+                  <input required type="text" class="form-control" name="choice2" placeholder="Choice 2">
+                </div>
+                <div class="form-group">
+                  <label for="comment">Description:</label>
+                  <textarea class="form-control" placeholder="Description (optional)" rows="2" name="description2"></textarea>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="creatorEmail">Email: </label>
+                <input type="email" class="form-control" name="creatorEmail" placeholder="Enter your email" required>
+              </div>
+              <div id="pollSubmit">
+                <button type="submit" class="btn btn-primary">Create Poll</button>
+
+              </div>
+
+            </form>
+          </div><!-- /.col-lg-6 -->
+        </div><!-- Row -->
+      </div><!-- /.container -->
+
+    </div>
   </body>
 </html>
