@@ -7,12 +7,10 @@
 
 const express = require('express');
 const router  = express.Router();
-const {getRandomInt} = require('./helpers/helper.js');
+const {getRandomInt, sendEmail} = require('./helpers/helper.js');
 const {dtoPoll} = require('./helpers/dtoExtensions.js');
 const sgMail = require('@sendgrid/mail')
 sgMail.setApiKey(process.env.SENDGRID_API_KEY)
-
-console.log("************#####",process.env.SENDGRID_API_KEY)
 
 module.exports = (db) => {
   // get all polls
@@ -44,23 +42,13 @@ module.exports = (db) => {
         //generate links
         var submission_link = 'http://localhost:8080/' + 'submission_page' +  '?pollCode='+guid;
         var admin_link = 'http://localhost:8080/' + 'admin_page' +'?pollCode='+guid;
-          const msg = {
-          to: 'bkh.hadjira@gmail.com', // Change to your recipient
+        const msg = {
+          to: user_email, // Change to your recipient
           from: 'bkh.hadjira@gmail.com', // Change to your verified sender
           subject: 'Sending with SendGrid is Fun',
           text: 'and easy to do anywhere, even with Node.js',
           html: `<strong>and easy to do anywhere, even with Node.js ${submission_link} ${admin_link} </strong>`,
         }
-        console.log(submission_link)
-        sgMail
-          .send(msg)
-          .then((response) => {
-            console.log(response[0].statusCode)
-            console.log(response[0].headers)
-          })
-          .catch((error) => {
-            console.error(error)
-          })
 
         db.query(`insert into polls (poll_question,administrative_link, submission_link, user_id,user_email, poll_code) values ('${poll_question}', '${submission_link}', '${admin_link}', '${user_id}', '${user_email}', '${guid}');`,(err, success) => {
           if (err) {
@@ -75,12 +63,11 @@ module.exports = (db) => {
                     console.log("choice added successfully")
                   });
                 });
+                sendEmail(msg);
                 res
                 .status(201)
                 .json({ poll });
               })
-              // console.log('poll added')
-              // res.send('poll added')
           }
       })
 

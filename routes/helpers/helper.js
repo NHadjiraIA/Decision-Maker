@@ -4,4 +4,16 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
-module.exports = {getRandomInt}
+function sendEmail(msg){
+  sgMail
+    .send(msg)
+    .then((response) => {
+      console.log(response[0].statusCode)
+      console.log(response[0].headers)
+    })
+    .catch((error) => {
+      console.error(error)
+    })
+}
+
+module.exports = {getRandomInt, sendEmail}
