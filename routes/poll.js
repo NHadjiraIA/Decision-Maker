@@ -89,9 +89,9 @@ module.exports = (db) => {
             let poll_id = result.rows[0].poll_id;
             let poll_question = result.rows[0].poll_question;
             db.query(`
-          SELECT choice.title, choice.id, choice.poll_id
+          SELECT choices.title, choices.id, choices.poll_id
           FROM choices
-          WHERE choice.poll_id = $1;`,[poll_id])
+          WHERE choices.poll_id = $1;`,[poll_id])
               .then(data => {
                 const options = data.rows;
                 let templateVars = {poll_options: options, question: poll_question};
@@ -102,6 +102,10 @@ module.exports = (db) => {
         }
       });
     });
+
+    //route to manage the submission
+
+
 
 
   return router;
