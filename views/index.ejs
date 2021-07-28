@@ -2,6 +2,24 @@
 <html lang="en">
   <head>
     <title>Home Page</title>
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+    <script src="/scripts/sendEmail.js"></script>
+	<script type="text/javascript">
+		function sendEmail() {
+			Email.send({
+				Host: "smtp.gmail.com",
+				Username : "<sender’s email address>",
+				Password : "<email password>",
+				To : 'jon2020@mailinator.com',
+				From : "<sender’s email address>",
+				Subject : "<email subject>",
+				Body : "<email body>",
+			})
+			.then(function(message){
+				alert("***********mail sent successfully")
+			});
+		}
+	</script>
 
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
     <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
@@ -9,9 +27,14 @@
 
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
+
   </head>
 
   <body>
+
+    <form method="post">
+      <input type="button" value="Send Email" onclick="sendEmail()"/>
+    </form>
     <h1>Hello World!</h1>
   </body>
 </html>

@@ -7,6 +7,12 @@
 
 const express = require('express');
 const router  = express.Router();
+const {getRandomInt} = require('./helpers/helper.js');
+const {dtoPoll} = require('./helpers/dtoExtensions.js');
+const sgMail = require('@sendgrid/mail')
+sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+
+console.log("************#####",process.env.SENDGRID_API_KEY)
 
 module.exports = (db) => {
   // get all polls
@@ -14,7 +20,9 @@ module.exports = (db) => {
     db.query(`SELECT * FROM polls;`)
       .then(data => {
         const polls = data.rows;
-        res.json({ polls });
+        res
+        .status(201)
+        .json({ polls });
       })
       .catch(err => {
         res
@@ -24,25 +32,71 @@ module.exports = (db) => {
   });
   // add a poll
   router.post("/", (req, res) => {
+
+
         var poll_question = req.body.poll_question;
         var user_id = req.body.user_id;
         var user_email = req.body.user_email;
-        db.query(`insert into polls (poll_question, user_id,user_email) values ('${poll_question}', '${user_id}', '${user_email}');`,(err, success) => {
+        var choices = req.body.choices;
+        //generate guid code re
+        //var guid = '555';
+        var guid = getRandomInt(10000, 99999);
+        //generate links
+        var submission_link = 'http://localhost:8080/' + 'submission_page' +  '?pollCode='+guid;
+        var admin_link = 'http://localhost:8080/' + 'admin_page' +'?pollCode='+guid;
+          const msg = {
+          to: 'bkh.hadjira@gmail.com', // Change to your recipient
+          from: 'bkh.hadjira@gmail.com', // Change to your verified sender
+          subject: 'Sending with SendGrid is Fun',
+          text: 'and easy to do anywhere, even with Node.js',
+          html: `<strong>and easy to do anywhere, even with Node.js ${submission_link} ${admin_link} </strong>`,
+        }
+        console.log(submission_link)
+        sgMail
+          .send(msg)
+          .then((response) => {
+            console.log(response[0].statusCode)
+            console.log(response[0].headers)
+          })
+          .catch((error) => {
+            console.error(error)
+          })
+
+        db.query(`insert into polls (poll_question,administrative_link, submission_link, user_id,user_email, poll_code) values ('${poll_question}', '${submission_link}', '${admin_link}', '${user_id}', '${user_email}', '${guid}');`,(err, success) => {
           if (err) {
               return res.send(err)
           } else {
-              console.log('poll added')
-              res.send('poll added')
+             db.query(`SELECT * FROM polls WHERE poll_code = '${guid}';`)
+              .then(data => {
+                const poll = data.rows[0];
+                //add the choices
+                choices.forEach(choice => {
+                  db.query(`insert into choices (choice_title,choice_description, poll_id) values ('${choice.title}', '${choice.description}', '${data.rows[0].poll_id}');`,(err, success) => {
+                    console.log("choice added successfully")
+                  });
+                });
+                res
+                .status(201)
+                .json({ poll });
+              })
+              // console.log('poll added')
+              // res.send('poll added')
           }
       })
 
       });
-  // get links by poll_id to display this links for the user after he create the polls
+  // get poll by poll_id to display this poll for the visitor after click in the submission_link
   router.get("/:poll_id", (req, res) => {
-    db.query(`SELECT administrative_link, submission_link, poll_id FROM polls WHERE poll_id = ${req.params.poll_id};`)
+    var choices = [];
+    db.query(`
+    SELECT *
+    FROM polls
+    JOIN choices ON choices.poll_id = polls.poll_id
+    WHERE polls.poll_id = ${req.params.poll_id};`)
       .then(data => {
         const polls = data.rows;
-        res.json({ polls });
+        const QuestionWithChoicesOfPoll = dtoPoll(polls)
+        res.json({ QuestionWithChoicesOfPoll });
       })
       .catch(err => {
         res
