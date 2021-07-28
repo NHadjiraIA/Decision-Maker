@@ -1,3 +1,6 @@
+const sgMail = require('@sendgrid/mail')
+sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+
 function getRandomInt(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
