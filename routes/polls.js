@@ -9,8 +9,6 @@ const express = require('express');
 const router  = express.Router();
 const {getRandomInt, sendEmail} = require('./helpers/helper.js');
 const {dtoPoll} = require('./helpers/dtoExtensions.js');
-const sgMail = require('@sendgrid/mail')
-sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 
 module.exports = (db) => {
   // get all polls
@@ -30,10 +28,7 @@ module.exports = (db) => {
   });
   // add a poll
   router.post("/", (req, res) => {
-
-
         var poll_question = req.body.poll_question;
-        var user_id = req.body.user_id;
         var user_email = req.body.user_email;
         var choices = req.body.choices;
         //generate guid code re
@@ -49,8 +44,7 @@ module.exports = (db) => {
           text: 'and easy to do anywhere, even with Node.js',
           html: `<strong>and easy to do anywhere, even with Node.js ${submission_link} ${admin_link} </strong>`,
         }
-
-        db.query(`insert into polls (poll_question,administrative_link, submission_link, user_id,user_email, poll_code) values ('${poll_question}', '${submission_link}', '${admin_link}', '${user_id}', '${user_email}', '${guid}');`,(err, success) => {
+        db.query(`insert into polls (poll_question,administrative_link, submission_link, user_email, poll_code) values ('${poll_question}', '${submission_link}', '${admin_link}', '${user_email}', '${guid}');`,(err, success) => {
           if (err) {
               return res.send(err)
           } else {
