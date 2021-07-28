@@ -1,0 +1,206 @@
+{
+	"info": {
+		"_postman_id": "78f1f49b-a260-4b2b-96a2-d844a5d2501d",
+		"name": "Decision_Maker",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "PostPolls",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept-encoding": true,
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"poll_question\":\"which car do you prefer?\",\n    \"user_id\":1,\n    \"user_email\": \"bkh.hadjira@gmail.com\",\n    \"choices\":[\n        {\n            \"title\": \"Ford\",\n            \"description\": \"d1 of ford\"\n        },\n        {\n            \"title\": \"Toyota\",\n            \"description\": \"d2 of Toyota\"\n        },\n        {\n            \"title\": \"Bmw\",\n            \"description\": \"d2 of Dmw\"\n        }\n\n    ]\n\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/polls",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"polls"
+					],
+					"query": [
+						{
+							"key": "user_id",
+							"value": "2",
+							"disabled": true
+						},
+						{
+							"key": "user_email",
+							"value": "kira@gmail.com",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetChoicesByPollId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/choices/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"choices",
+						"1"
+					],
+					"query": [
+						{
+							"key": "choice_title",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetResponses",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/responses",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"responses"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PostResponse",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "response_position",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "visitor_name",
+							"value": "Maya",
+							"type": "text"
+						},
+						{
+							"key": "poll_id",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "choice_id",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/responses",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"responses"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetPollWithChoicesById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/polls/17",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"polls",
+						"17"
+					],
+					"query": [
+						{
+							"key": "poll_id",
+							"value": "1",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PostPollAndChoices",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"poll_question\":\"which color do you prefer?\",\n    \"user_id\":1,\n    \"user_email\": \"bkh.hadjira@gmail.com\",\n    \"choices\":[\n        {\n            \"title\": \"red\",\n            \"description\": \"d1 of red\"\n        },\n        {\n            \"title\": \"green\",\n            \"description\": \"d2 of green\"\n        },\n        {\n            \"title\": \"bleu\",\n            \"description\": \"d2 of bleu\"\n        }\n\n    ]\n\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/polls",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"polls"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
