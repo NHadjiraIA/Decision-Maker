@@ -4,6 +4,6 @@ CREATE TABLE polls (
   poll_question TEXT,
   administrative_link TEXT,
   submission_link TEXT,
-  user_email VARCHAR(255) NOT NULL,
-  user_id INTEGER REFERENCES users(user_id)
+  poll_code TEXT,
+  user_email VARCHAR(255) NOT NULL
 );

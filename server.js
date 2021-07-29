@@ -36,6 +36,8 @@ app.use(express.static("public"));
 // Note: Feel free to replace the example routes below with your own
 const usersRoutes = require("./routes/users");
 const pollsRoutes = require("./routes/polls");
+const choicesRoutes = require("./routes/choices");
+const responsesRoutes = require("./routes/responses");
 const widgetsRoutes = require("./routes/widgets");
 const pollRoutes = require("./routes/poll");
 
@@ -43,7 +45,8 @@ const pollRoutes = require("./routes/poll");
 // Note: Feel free to replace the example routes below with your own
 app.use("/api/users", usersRoutes(db));
 app.use("/api/polls", pollsRoutes(db));
-//app.use("/api/polls/?poll_id=?", pollsRoutes(db));
+app.use("/api/choices", choicesRoutes(db));
+app.use("/api/responses", responsesRoutes(db));
 app.use("/api/widgets", widgetsRoutes(db));
 app.use("/poll", pollRoutes(db));
 // Note: mount other resources here, using the same pattern above
@@ -54,6 +57,10 @@ app.use("/poll", pollRoutes(db));
 // Separate them into separate routes files (see above).
 app.get("/", (req, res) => {
   res.render("index");
+});
+
+app.get("/createpoll", (req, res) => {
+  res.render("createpoll");
 });
 
 app.listen(PORT, () => {
