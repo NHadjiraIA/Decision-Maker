@@ -22,7 +22,8 @@ db.connect();
 app.use(morgan('dev'));
 
 app.set("view engine", "ejs");
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 app.use("/styles", sass({
   src: __dirname + "/styles",
   dest: __dirname + "/public/styles",
@@ -34,12 +35,15 @@ app.use(express.static("public"));
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
 const usersRoutes = require("./routes/users");
+const pollsRoutes = require("./routes/polls");
 const widgetsRoutes = require("./routes/widgets");
 const pollRoutes = require("./routes/poll");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/api/users", usersRoutes(db));
+app.use("/api/polls", pollsRoutes(db));
+//app.use("/api/polls/?poll_id=?", pollsRoutes(db));
 app.use("/api/widgets", widgetsRoutes(db));
 app.use("/poll", pollRoutes(db));
 // Note: mount other resources here, using the same pattern above
