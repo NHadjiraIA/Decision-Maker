@@ -19,4 +19,18 @@ function sendEmail(msg){
     })
 }
 
-module.exports = {getRandomInt, sendEmail}
+function insertResponsesBatch(db, choicesPositions, visitor_name, pollId) {
+  return new Promise((resolve, reject) => {
+    console.log(choicesPositions);
+    choicesPositions.forEach(choicePosition => {
+      db.query(`insert into responses (response_position,visitor_name,poll_id, choice_id) values ('${choicePosition.positionChoice}', '${visitor_name}','${pollId}','${choicePosition.codeChoice}');`,(err, success) => {
+        if(err){
+          reject(false);
+        }
+      });
+    });
+    resolve(true);
+  });
+}
+
+module.exports = {getRandomInt, sendEmail, insertResponsesBatch}

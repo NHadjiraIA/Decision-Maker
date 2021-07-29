@@ -6,6 +6,7 @@
  */
 
 const express = require('express');
+const {insertResponsesBatch} = require('./helpers/helper.js');
 const router  = express.Router();
 
 module.exports = (db) => {
@@ -24,20 +25,31 @@ module.exports = (db) => {
   });
   // add a response
   router.post("/", (req, res) => {
-        var response_position = req.body.response_position;
         var visitor_name = req.body.visitor_name;
-        var poll_id = req.body.poll_id;
-        var choice_id = req.body.choice_id;
-        db.query(`insert into responses (response_position, visitor_name,poll_id, choice_id) values ('${response_position}', '${visitor_name}', '${poll_id}', '${choice_id}');`,(err, success) => {
-          if (err) {
-              return res.send(err)
-          } else {
-              console.log('response added')
-              res.send('response added')
-          }
-      })
-
-      });
+        var code_poll = req.body.code_poll;
+        var choicesPositions = req.body.choicesPositions;
+        var pollId = 0;
+        db.query(`select * from polls where poll_code = '${code_poll}'`)
+          .then(data =>{
+            pollId = data.rows[0].poll_id;
+            insertResponsesBatch(db, choicesPositions, visitor_name, pollId)
+            .then(isSucceded =>{
+              if(isSucceded){
+                db.query(`SELECT * FROM responses`)
+                .then(data => {
+                  const response = data.rows;
+                  res
+                  .status(201)
+                  .json({ response });
+                  }).catch(err => {
+                  res
+                    .status(500)
+                    .json({ error: err.message });
+                  });
+              }
+            })
+          });
+  });
   // get response by poll_id to display this choices for the visitor  after he click on the sub_link
   router.get("/:poll_id", (req, res) => {
     db.query(`
