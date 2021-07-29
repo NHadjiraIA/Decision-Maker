@@ -1,3 +1,5 @@
+/* eslint-disable camelcase */
+/* eslint-disable indent */
 /*
  * All routes for Polls are defined here
  * Since this file is loaded in server.js into api/polls,
@@ -24,17 +26,17 @@ module.exports = (db) => {
   });
   // add a choice
   router.post("/", (req, res) => {
-        var choice_title = req.body.choice_title;
-        var choice_description = req.body.choice_description;
-        var poll_id = req.body.poll_id;
+        let choice_title = req.body.choice_title;
+        let choice_description = req.body.choice_description;
+        let poll_id = req.body.poll_id;
         db.query(`insert into choices (choice_title, choice_description,poll_id) values ('${choice_title}', '${choice_description}', '${poll_id}');`,(err, success) => {
           if (err) {
-              return res.send(err)
+              return res.send(err);
           } else {
-              console.log('choice added')
-              res.send('choice added')
+              console.log('choice added');
+              res.send('choice added');
           }
-      })
+      });
 
       });
   // get choices by poll_id to display this choices for the visitor  after he click on the sub_link
