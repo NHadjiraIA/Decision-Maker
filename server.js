@@ -57,8 +57,8 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
-app.get("/createpoll", (req, res) => {
-  res.render("createpoll");
+app.get("/success", (req, res) => {
+  res.render("success");
 });
 app.get("/tanksPage", (req, res) => {
   res.render("thanksPage");
