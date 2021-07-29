@@ -61,6 +61,18 @@ app.get("/createpoll", (req, res) => {
   res.render("createpoll");
 });
 
+// app.get("/vote", (req, res) => {
+//   res.render("poll");
+// });
+
+// app.get("/result", (req, res) => {
+//   res.render("results");
+// });
+
+// app.get("/success", (req, res) => {
+//   res.render("success");
+// });
+
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
