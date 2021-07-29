@@ -1,10 +1,176 @@
 // See: https://sass-lang.com/
 
 body {
+<<<<<<< HEAD
   background-color: white;
   background-image: url("/images/decision.jpg");
+=======
+  background-color: #eee;
+  h1 {
+    color: #bce5ee;
+    text-align: center;
+  }
+}
+
+#home {
+  background-color: #eee;
+  padding-bottom: 30px;
+  // background-image : src('../public/images/directions.png')
+  background-image: url('../images/back.jpeg');
+  background-size: cover;
+  height : 100vw;
+}
+
+#homeEmail {
+  width : 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#index {
+  // color: #dbf2fd;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+#pollSubmit {
+  text-align: center;
+}
+
+#pageHeader {
+  background-color: rgba(247, 225, 231, 0.952) ;
+  margin-top: 0px;
+  padding-top: 20px;
+
+  #logo {
+    margin-top: 0;
+    padding-left: 20px;
+    padding-bottom: 5px;
+    color: #fa305c;
+    text-shadow: 1px 1px 2px #000000;
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+  }
+}
+
+#instructions {
+
+  h2 {
+    padding-top: 10px;
+    text-align: center;
+  }
+  h3 {
+    text-align: center;
+  }
+}
+
+#pollForm {
+  font-size: 16px;
+}
+
+#newPollForm {
+  font-size: 16px;
+
+  #addOptionBtn {
+    margin-bottom:20px;
+  }
+}
+
+#sortable {
+  list-style-type: none;
+  padding-left: 0;
+
+  li {
+    background-color: rgba(247, 225, 231, 0.952);
+    margin-left: 0;
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid grey;
+    cursor: grab;
+  }
+
+  li:hover {
+    background-color: rgba(243, 156, 179, 0.952);
+    color: #f5ffff;
+  }
+
+  h3 {
+    margin: 0;
+    padding: 0;
+    padding-bottom: 10px;
+  }
+
+  span {
+    margin: 0;
+    padding-top: 10px;
+  }
+}
+
+#voteSubmit {
+  margin-top: 10px;
+}
+
+#closePollBtn {
+  float: left;
+}
+
+// #errorMsg {
+//   color: #D8000C;
+//   background-color: #FFD2D2;
+//   height: 35px;
+//   border-radius: 5px;
+//   padding: 5px;
+//   padding-left: 10px;
+//   margin-top: 5px;
+//   line-height: 1.6;
+// }
+
+.successMsg {
+  color: #4F8A10;
+  background-color: #DFF2BF;
+  float: left;
+  margin-left: 20px;
+  padding: 7px;
+  border-radius: 5px;
+}
+
+.adminStats {
+  margin-top: 20px;
+
+  td {
+    padding-right: 10px;
+    padding-bottom: 10px;
+  }
+
+  .voterRanking {
+    text-align: center;
+  }
+}
+
+.success {
+  p {
+    font-size: 18px;
+  }
+}
+
+#notFoundMessage {
+  text-align: center;
+>>>>>>> 76aa47c4b84dd025df8b861675fd0761068b04ad
 
   h1 {
-    color: #244751;
+    margin-bottom: 20px;
   }
+
+  p {
+    font-size: 16px;
+  }
+}
+
+.chartTitle {
+  text-align: center;
+  margin-bottom: 30px;
 }

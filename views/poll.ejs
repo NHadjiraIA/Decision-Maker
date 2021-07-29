@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+
+    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+
+    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+    <script type="text/javascript" src="/scripts/app.js"></script>
+      <!-- Bootstrap -->
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css" integrity="sha384-PmY9l28YgO4JwMKbTvgaS7XNZJ30MK9FAZjjzXtlqyZCqBY6X6bXIkM++IkyinN+" crossorigin="anonymous">
+    <title>Vote Page</title>
+  </head>
+
+  <body>
+  <% include ./partials/_header %>
+  <div id="index" class="container-fluid">
+    <div class="row">
+      <div class="col-lg-6 col-lg-offset-3">
+        <h2>Question1</h2>
+        <h3>Select your choice!</h3>
+        <p>Rank your choices from most preferred to least preferred by dragging and dropping the items below</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-6 col-lg-offset-3">
+        <ul id="sortable">
+            <div id="1" >
+              <li>
+                <h3 class="candidateName">choice 1</h3>
+                <span class="candidateDesc">choice 1 description</span>
+              </li>
+            </div>
+            <div id="2">
+              <li>
+                <h3 class="candidateName">choice 2</h3>
+                <span class="candidateDesc">choice 2 description</span>
+              </li>
+            </div>
+            <div id ="3">
+              <li>
+                <h3 class="candidateName">choice 3</h3>
+                <span class="candidateDesc">choice 3 description</span>
+              </li>
+            </div>
+        </ul>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-6 col-lg-offset-3">
+        <label for="voterName">Name: </label>
+        <input id="voterName" type="text" class="form-control" name="voterName" placeholder="Enter your name">
+        <!-- <p id="errorMsg">Please enter your name before casting your vote!</p> -->
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-6 col-lg-offset-3">
+        <button id="voteSubmit" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+  </div><!-- /.container -->
+
+ <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+
+<!-- jQuery UI -->
+<script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<!-- More Bootstrap -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js" integrity="sha384-vhJnz1OVIdLktyixHY4Uk3OHEwdQqPppqYR8+5mjsauETgLOcEynD9oPHhhz18Nw" crossorigin="anonymous"></script>
+  </body>
+</html>
