@@ -46,9 +46,9 @@ $(() => {
       }
     });
     $( "#sortable" ).sortable({
-    update: function(event, ui) {
-      orderArray =   $(this).sortable('toArray');
-      console.log(orderArray);
+      update: function(event, ui) {
+        orderArray =   $(this).sortable('toArray');
+        console.log(orderArray);
       }
     });
     $( "#sortable" ).disableSelection();

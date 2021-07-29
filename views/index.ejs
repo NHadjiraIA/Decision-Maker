@@ -13,6 +13,9 @@
       <!-- Bootstrap -->
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css" integrity="sha384-PmY9l28YgO4JwMKbTvgaS7XNZJ30MK9FAZjjzXtlqyZCqBY6X6bXIkM++IkyinN+" crossorigin="anonymous">
 
+      <!-- Bootstrap -->
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css" integrity="sha384-PmY9l28YgO4JwMKbTvgaS7XNZJ30MK9FAZjjzXtlqyZCqBY6X6bXIkM++IkyinN+" crossorigin="anonymous">
+
   </head>
 
   <body>
@@ -21,35 +24,23 @@
       <div id="index" class="container-fluid">
         <div class="row">
           <div id="instructions" class="col-lg-6 col-lg-offset-3">
-          <h1>Decision making made easy!</h1>
-          <h3>Get started by providing your email id</h3>
+          <h1>Welcome to Chooser App</h1>
         </div>
         <div class="row" id ="homeEmail">
-          <form id="pollForm" method="GET" action="/createpoll">
+         <form id="pollForm" method="GET" action="/createpoll">
               <div class="form-group">
                 <label for="creatorEmail">Email: </label>
-                <input type="email" class="form-control" name="creatorEmail" placeholder="Enter your email" required>
+                <input type="email" id="email" class="form-control" name="creatorEmail" placeholder="Enter your email" required>
               </div>
               <div id="pollSubmit">
-                <button type="submit" class="btn btn-primary">Create Poll</button>
-
+                <button type="submit" id="bt-create-email" class="btn btn-primary">Create Poll</button>
               </div>
 
-            </form>
+          </form>
           </div><!-- /.col-lg-6 -->
         </div><!-- Row -->
       </div><!-- /.container -->
 
     </div>
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
-
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-
-<!-- jQuery UI -->
-<script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
-<!-- More Bootstrap -->
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js" integrity="sha384-vhJnz1OVIdLktyixHY4Uk3OHEwdQqPppqYR8+5mjsauETgLOcEynD9oPHhhz18Nw" crossorigin="anonymous"></script>
   </body>
 </html>

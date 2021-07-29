@@ -22,7 +22,7 @@ db.connect();
 app.use(morgan('dev'));
 
 app.set("view engine", "ejs");
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use("/styles", sass({
   src: __dirname + "/styles",
@@ -61,6 +61,9 @@ app.get("/", (req, res) => {
 
 app.get("/createpoll", (req, res) => {
   res.render("createpoll");
+});
+app.get("/tanksPage", (req, res) => {
+  res.render("thanksPage");
 });
 
 // app.get("/vote", (req, res) => {

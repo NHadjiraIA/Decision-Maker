@@ -15,6 +15,7 @@ function dtoPoll(poll) {
       "questionPoll" : poll[0].poll_question,
       "codePoll": poll[0].poll_code,
       "administrativeLink" : poll[0].administrative_link,
+      "submissionLink" : poll[0].submission_link,
       "responseChoices": responseChoices
     }
 
