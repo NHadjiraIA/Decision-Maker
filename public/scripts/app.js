@@ -1,63 +1,73 @@
-$(() => {
-  $.ajax({
-    method: "GET",
-    url: "/api/users"
-  }).done((users) => {
-    for(user of users) {
-      $("<div>").text(user.name).appendTo($("body"));
-    }
-  });
-  $.ajax({
-    method: "GET",
-    url: "/api/polls"
-  }).done((polls) => {
-    for(poll of polls) {
-      $("<div>").text(poll.poll_question).appendTo($("body"));
-    }
-  });
-});
+// $(() => {
+//   $.ajax({
+//     method: "GET",
+//     url: "/api/users"
+//   }).done((users) => {
+//     for(user of users) {
+//       $("<div>").text(user.name).appendTo($("body"));
+//     }
+//   });
+//   $.ajax({
+//     method: "GET",
+//     url: "/api/polls"
+//   }).done((polls) => {
+//     for (poll of polls) {
+//       $("<div>").text(poll.poll_question).appendTo($("body"));
+//     }
+//   });
+//   //});
 
-$("#poll_submit").submit(function(event) {
-  // prevent the default behaviour to leave the page
-//  event.preventDefault();
-var formData = JSON.stringify($("#poll_submit").serializeArray());
+//   $.ajax({
+//     method:"POST",
+//     url:`${URL}/api/polls`,
+//     dataType: 'json',
+//     data: testJson
+//   })
+//     .then(res => {
+//       console.log(res);
+//       window.location.replace('/createpoll');
+//     })
+//     .catch((err)=>{
+//       console.log(`err loading articles: ${err}`);
+//     })
+//     .always(()=>{
+//       console.log(`I'll always say this nomatter what`);
+//     });
+//   console.log('submited');
+//   // });
 
-   $.ajax({
-     method: 'POST',
-     url: '/api/polls',
-    //  data: $(this).serialize()
-     data: formData
-   }).then(function(data) {
-     console.log(data)
 
-   })
+// });
 
-});
+// $( "#nameField" ).on("input", function() {
+//   $("#errorMsg").slideUp();
+// });
+//  }
+//});
 
 $(() => {
   // Vote Page
   if (document.getElementById('sortable')) {
     // $("#errorMsg").hide();
     let orderArray = [];
-    $( "#sortable" ).sortable({
+    $("#sortable").sortable({
       create: function(event, ui) {
         orderArray = $(this).sortable('toArray');
         // console.log(orderArray);
       }
     });
-    $( "#sortable" ).sortable({
+    $("#sortable").sortable({
       update: function(event, ui) {
         orderArray =   $(this).sortable('toArray');
         console.log(orderArray);
       }
     });
-    $( "#sortable" ).disableSelection();
+    $("#sortable").disableSelection();
 
     // $( "#nameField" ).on("input", function() {
     //   $("#errorMsg").slideUp();
     // });
   }
 });
-
 
 

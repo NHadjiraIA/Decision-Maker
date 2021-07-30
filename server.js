@@ -39,7 +39,6 @@ const pollsRoutes = require("./routes/polls");
 const choicesRoutes = require("./routes/choices");
 const responsesRoutes = require("./routes/responses");
 const widgetsRoutes = require("./routes/widgets");
-//temporal const pollRoutes = require("./routes/poll");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -48,7 +47,6 @@ app.use("/api/polls", pollsRoutes(db));
 app.use("/api/choices", choicesRoutes(db));
 app.use("/api/responses", responsesRoutes(db));
 app.use("/api/widgets", widgetsRoutes(db));
-// temporal app.use("/poll", pollRoutes(db));
 // Note: mount other resources here, using the same pattern above
 
 
@@ -59,20 +57,23 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
-app.get("/createpoll", (req, res) => {
-  res.render("createpoll");
+app.get("/success", (req, res) => {
+  res.render("success");
 });
-app.get("/tanksPage", (req, res) => {
+app.get("/thanksPage", (req, res) => {
   res.render("thanksPage");
 });
 
 // app.get("/vote", (req, res) => {
 //   res.render("poll");
 // });
+app.get("/submission_page?:pollCode", (req, res) => {
+  res.render("poll");
+});
 
-// app.get("/result", (req, res) => {
-//   res.render("results");
-// });
+app.get("/admin_page?:pollCode", (req, res) => {
+  res.render("results");
+});
 
 // app.get("/success", (req, res) => {
 //   res.render("success");
