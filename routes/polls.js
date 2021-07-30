@@ -29,6 +29,15 @@ module.exports = (db) => {
       });
   });
 
+  // Helper to get poll id from submit url
+  const getPollId = function(submission_link) {
+    return db.query(
+      `SELECT poll_id, poll_question
+      FROM polls
+      WHERE submission_link = $1`, [submission_link]
+    );
+  };
+
   router.post("/test", (req, res) => {
     db.query(`select * from polls`)
     .then(data => {
@@ -84,24 +93,25 @@ module.exports = (db) => {
       });
 
   });
-  // get poll by poll_id to display this poll for the visitor after click in the submission_link
-  router.get("/:poll_id", (req, res) => {
-    let choices = [];
-    db.query(`
-    SELECT *
-    FROM polls
-    JOIN choices ON choices.poll_id = polls.poll_id
-    WHERE polls.poll_id = ${req.params.poll_id};`)
-      .then(data => {
-        const polls = data.rows;
-        const QuestionWithChoicesOfPoll = dtoPoll(polls);
-        res.json({ QuestionWithChoicesOfPoll });
-      })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
+  // route to choose on poll
+  router.get("/submission_page?:pollCode", (req, res) => {
+    const voterUrl = req.params.submission_link;
+    getPollId(voterUrl)
+      .then(result => {
+        let poll_id = result.rows[0].poll_id;
+        let poll_question = result.rows[0].poll_question
+        db.query(`
+        SELECT choices.choice_id, choices.choice_title, choices.choice_description, choices.poll_id
+        FROM choices
+        WHERE choices.poll_id = $1;`, [poll_id])
+          .then(data => {
+            const choices = data.rows;
+            let templateVars = {poll_choices: choices, poll_question: poll_question};
+            console.log(templateVars);
+            res.render('choose_form', templateVars);
+          });
       });
   });
+
   return router;
 };

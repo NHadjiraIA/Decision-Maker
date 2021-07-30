@@ -20,14 +20,21 @@
   <div id="index" class="container-fluid">
     <div class="row">
       <div class="col-lg-6 col-lg-offset-3">
-        <h2>Question1</h2>
+        <h2></h2>
         <h3>Select your choice!</h3>
         <p>Rank your choices from most preferred to least preferred by dragging and dropping the items below</p>
       </div>
     </div>
-    <div class="row">
+    <input type="hidden" name="poll_id" value="<%=poll_choices[0].poll_id%>">
+    <div class="vote">
       <div class="col-lg-6 col-lg-offset-3">
         <ul id="sortable">
+          <% for (key of poll_choices) { %>
+          <% let id= key.choice_id.split(" ").join('') %>
+          <td class="ui-widget-content" id="draggable"><%=key.choice_id%></td>
+          <input type="hidden" name="ranks[<%=key.choice_id %>][id]" value="<%=key.choice_id%>">
+          <input id="<%=choice_id%>" type="hidden" name="ranks[<%=key.choice_id%>][rank]" value="0">
+          <% }; %>
             <div id="1" >
               <li>
                 <h3 class="candidateName">choice 1</h3>

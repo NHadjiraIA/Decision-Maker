@@ -1,17 +1,18 @@
 $(document).ready(function() {
   $(() => {
     const URL = "http://localhost:8080"
-    var poll_id = getUrlVars()["pollCode"];
+    var  poll_id = getUrlVars()["pollCode"];
     $.ajax({
       method: "GET",
       url: `${URL}/api/polls/${poll_id}`,
     }).done((poll) => {
-      console.log(poll);
+      console.log(poll)
 
       // for(user of users) {
       //   $("<div>").text(user.name).appendTo($("body"));
       // }
-    });
+    });;
+
 
   });
 
@@ -28,4 +29,6 @@ $(document).ready(function() {
       return vars;
   }
 
-});
+
+})
+

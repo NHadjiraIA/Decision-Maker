@@ -51,7 +51,7 @@ module.exports = (db) => {
           });
   });
   // get response by poll_id to display this choices for the visitor  after he click on the sub_link
-  router.get("/:poll_id", (req, res) => {
+  router.get("/submission_page?:pollCode", (req, res) => {
     db.query(`
     SELECT polls.poll_question, choice_title, choice_description
     FROM choices
