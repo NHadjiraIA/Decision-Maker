@@ -60,13 +60,16 @@ app.get("/", (req, res) => {
 app.get("/success", (req, res) => {
   res.render("success");
 });
-app.get("/tanksPage", (req, res) => {
+app.get("/thanksPage", (req, res) => {
   res.render("thanksPage");
 });
 
 // app.get("/vote", (req, res) => {
 //   res.render("poll");
 // });
+app.get("/submission_page?:pollCode", (req, res) => {
+  res.render("poll");
+});
 
 // app.get("/result", (req, res) => {
 //   res.render("results");
