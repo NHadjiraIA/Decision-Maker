@@ -71,6 +71,10 @@ app.get("/submission_page?:pollCode", (req, res) => {
   res.render("poll");
 });
 
+app.get("/admin_page?:pollCode", (req, res) => {
+  res.render("results");
+});
+
 // app.get("/result", (req, res) => {
 //   res.render("results");
 // });
