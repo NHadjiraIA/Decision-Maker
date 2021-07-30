@@ -23,6 +23,7 @@ app.use(morgan('dev'));
 
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.use("/styles", sass({
   src: __dirname + "/styles",
   dest: __dirname + "/public/styles",
@@ -34,11 +35,17 @@ app.use(express.static("public"));
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
 const usersRoutes = require("./routes/users");
+const pollsRoutes = require("./routes/polls");
+const choicesRoutes = require("./routes/choices");
+const responsesRoutes = require("./routes/responses");
 const widgetsRoutes = require("./routes/widgets");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/api/users", usersRoutes(db));
+app.use("/api/polls", pollsRoutes(db));
+app.use("/api/choices", choicesRoutes(db));
+app.use("/api/responses", responsesRoutes(db));
 app.use("/api/widgets", widgetsRoutes(db));
 // Note: mount other resources here, using the same pattern above
 
@@ -49,6 +56,32 @@ app.use("/api/widgets", widgetsRoutes(db));
 app.get("/", (req, res) => {
   res.render("index");
 });
+
+app.get("/success", (req, res) => {
+  res.render("success");
+});
+app.get("/thanksPage", (req, res) => {
+  res.render("thanksPage");
+});
+
+// app.get("/vote", (req, res) => {
+//   res.render("poll");
+// });
+app.get("/submission_page?:pollCode", (req, res) => {
+  res.render("poll");
+});
+
+app.get("/admin_page?:pollCode", (req, res) => {
+  res.render("results");
+});
+
+// app.get("/result", (req, res) => {
+//   res.render("results");
+// });
+
+// app.get("/success", (req, res) => {
+//   res.render("success");
+// });
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
