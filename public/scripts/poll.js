@@ -2,12 +2,13 @@ $(document).ready(function() {
   $(() => {
     const URL = "http://localhost:8080"
     var  poll_id = getUrlVars()["pollCode"];
-    console.log('ssssssssssss', poll_id)
+
     $.ajax({
       method: "GET",
       url: `${URL}/api/polls/${poll_id}`,
     }).done((poll) => {
       console.log(poll)
+
       $('.candidatequestion').text(poll.QuestionWithChoicesOfPoll.questionPoll)
       $('.choiceOneContent').text(poll.QuestionWithChoicesOfPoll.responseChoices[0].titleChoice)
       $('.choiceTwoContent').text(poll.QuestionWithChoicesOfPoll.responseChoices[1].titleChoice)
@@ -17,6 +18,7 @@ $(document).ready(function() {
      // $('.candidateDescChoiceOneTherd').text(poll.QuestionWithChoicesOfPoll.responseChoices[2].descriptionChoice)
 
       console.log(poll.QuestionWithChoicesOfPoll.questionPoll)
+
 
       // for(user of users) {
       //   $("<div>").text(user.name).appendTo($("body"));

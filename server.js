@@ -65,11 +65,16 @@ app.get("/createpoll", (req, res) => {
 app.get("/success", (req, res) => {
   res.render("success");
 });
+
 app.get("/submission_page?:pollCode", (req, res) => {
   res.render("poll");
 });
 app.get("/admin_page?:pollCode", (req, res) => {
   res.render("results");
+});
+
+app.get("/thanksPage", (req, res) => {
+  res.render("thanksPage");
 });
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);

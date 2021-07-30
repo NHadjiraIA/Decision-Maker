@@ -11,6 +11,7 @@ function sendEmail(msg){
   sgMail
     .send(msg)
     .then((response) => {
+      console.log("here", response)
       console.log(response[0].statusCode)
       console.log(response[0].headers)
     })

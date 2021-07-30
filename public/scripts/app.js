@@ -1,3 +1,4 @@
+
 $(() => {
   $("#createPollForm").submit(function(event){
   const emailVal =  $('#email').val();
@@ -15,4 +16,28 @@ $(() => {
     // }
   });
 });
+
+$(() => {
+  // Vote Page
+  if (document.getElementById('sortable')) {
+    // $("#errorMsg").hide();
+    let orderArray = [];
+    $( "#sortable" ).sortable({
+      create: function(event, ui) {
+        orderArray = $(this).sortable('toArray');
+        // console.log(orderArray);
+      }
+    });
+    $( "#sortable" ).sortable({
+    update: function(event, ui) {
+      orderArray =   $(this).sortable('toArray');
+      console.log(orderArray);
+      }
+    });
+    $( "#sortable" ).disableSelection();
+
+    // $( "#nameField" ).on("input", function() {
+    //   $("#errorMsg").slideUp();
+    // });
+  }
 });

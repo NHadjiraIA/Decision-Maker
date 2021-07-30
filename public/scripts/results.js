@@ -7,7 +7,7 @@ $(document).ready(function() {
       url: `${URL}/api/polls/${poll_id}`,
     }).done((poll) => {
       console.log(poll)
-
+      $('.chartTitleContent').text(poll.QuestionWithChoicesOfPoll.questionPoll)
       // for(user of users) {
       //   $("<div>").text(user.name).appendTo($("body"));
       // }

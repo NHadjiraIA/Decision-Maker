@@ -9,7 +9,7 @@
 
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/poll.js"></script>
-    <script type="text/javascript" src="/scripts/app.js"></script>
+    <!-- <script type="text/javascript" src="/scripts/app.js"></script> -->
       <!-- Bootstrap -->
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css" integrity="sha384-PmY9l28YgO4JwMKbTvgaS7XNZJ30MK9FAZjjzXtlqyZCqBY6X6bXIkM++IkyinN+" crossorigin="anonymous">
     <title>Vote Page</title>
@@ -20,10 +20,10 @@
   <div id="index" class="container-fluid">
     <div class="row">
       <div class="col-lg-6 col-lg-offset-3">
+
         <h2 id="question"> Question:
           <span class="candidatequestion" > </span>
         </h2>
-
 
         <h3>Select your choice!</h3>
         <p>Rank your choices from most preferred to least preferred by dragging and dropping the items below</p>
@@ -34,27 +34,36 @@
         <ul id="sortable">
             <div id="1" >
               <li>
+
                 <h3 class="choiceOne">choice 1 :
                   <span class="choiceOneContent" > </span>
                 </h3>
                 choice 1 description:
                 <span class="candidateDescChoiceOne"></span>
+
               </li>
             </div>
             <div id="2">
               <li>
+
                 <h3 class="candidateName">choice 2:
                   <span class="choiceTwoContent" > </span>
                 </h3>
                 <span class="candidateDescChoiceTwo">choice 2 description :</span>
+
+                <!-- <h3 class="candidateName">choice 2</h3>
+                <span class="candidateDesc">choice 2 description</span> -->
+
               </li>
             </div>
             <div id ="3">
               <li>
+
                 <h3 class="candidateName">choice 3:
                   <span class="choiceTherdContent" > </span>
                 </h3>
                 <span class="candidateDescChoiceOneTherd">choice 3 description : </span>
+
               </li>
             </div>
         </ul>
