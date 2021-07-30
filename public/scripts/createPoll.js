@@ -1,7 +1,10 @@
 
 $(() => {
   const URL = "http://localhost:8080"
+  var emailAddress  = sessionStorage.getItem('emailAddress');
+  console.log(emailAddress)
   $("#createPollForm").submit(function(event){
+
     const testJson = {
         poll_question: "which vegetables do you prefer?",
         user_email: "svthampuran@gmail.com",
@@ -13,7 +16,11 @@ $(() => {
             {
                 title: "apple",
                 description: "d2 of apple"
-            }
+            },
+            {
+              title: "banana",
+              description: "d2 of banana"
+          }
         ]
     }
     event.preventDefault();
@@ -25,6 +32,9 @@ $(() => {
       testJson.choices[0].description = $('#descriptionOneId').val()
       testJson.choices[1].title = $('#choiceTwoId').val()
       testJson.choices[1].description = $('#descriptionTwoId').val()
+      testJson.choices[2].title = $('#choicetherdId').val()
+      testJson.choices[2].description = $('#descriptiontherdId').val()
+
 
      $.ajax({
         method:"POST",
@@ -33,7 +43,9 @@ $(() => {
         data: testJson
      })
       .then(res => {
-        console.log(res)
+        sessionStorage.setItem('admin_link', res.poll.submission_link);
+        sessionStorage.setItem('submit_link', res.poll.administrative_link);
+        sessionStorage.setItem('poll_id', res.poll.poll_id);
         window.location.replace('/success')
       })
       .catch((err)=>{

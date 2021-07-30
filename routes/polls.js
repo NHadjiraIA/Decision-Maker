@@ -83,13 +83,13 @@ module.exports = (db) => {
 
       });
   // get poll by poll_id to display this poll for the visitor after click in the submission_link
-  router.get("/:poll_id", (req, res) => {
+  router.get("/:poll_code", (req, res) => {
     var choices = [];
     db.query(`
     SELECT *
     FROM polls
     JOIN choices ON choices.poll_id = polls.poll_id
-    WHERE polls.poll_id = ${req.params.poll_id};`)
+    WHERE polls.poll_code = '${req.params.poll_code}';`)
       .then(data => {
         const polls = data.rows;
         const QuestionWithChoicesOfPoll = dtoPoll(polls)

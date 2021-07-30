@@ -53,17 +53,24 @@ app.use("/api/widgets", widgetsRoutes(db));
 // Home page
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
+// app.get("/", (req, res) => {
+//   res.render("index");
+// });
 app.get("/", (req, res) => {
   res.render("index");
 });
-
+app.get("/createpoll", (req, res) => {
+  res.render("createpoll");
+});
 app.get("/success", (req, res) => {
   res.render("success");
 });
-app.get("/tanksPage", (req, res) => {
-  res.render("thanksPage");
+app.get("/submission_page?:pollCode", (req, res) => {
+  res.render("poll");
 });
-
+app.get("/admin_page?:pollCode", (req, res) => {
+  res.render("results");
+});
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
